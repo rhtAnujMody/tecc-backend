@@ -1,1 +1,1 @@
-# tecc-backend
+# tecc_server
