@@ -79,7 +79,8 @@ CORS_ALLOWED_ORIGINS = [
 "https://domain.com",
 "https://api.domain.com",
 "http://localhost:3000",
-"http://127.0.0.1:9000"
+"http://127.0.0.1:9000",
+"http://rlms-learning-platform.s3-website.ap-south-1.amazonaws.com"
 ]
 
 CORS_ALLOW_METHODS = [
@@ -92,6 +93,7 @@ CORS_ALLOW_METHODS = [
 ]
 
 CORS_ALLOW_HEADERS = [
+    "*",
 'accept',
 'accept-encoding',
 'authorization',
@@ -192,8 +194,7 @@ DJOSER ={
     "SET_PASSWORD_RETYPE": True,
     "PASSWORD_RESET_CONFIRM_RETYPE": True,
     "USERNAME_RESET_CONFIRM_URL": "email/reset/confirm/{uid}/{token}",
-    "ACTIVATION_URL": "activate/{uid}/{token}",
-    "SEND_ACTIVATION_EMAIL": True,
+    "SEND_ACTIVATION_EMAIL": False,
     "SERIALIZERS":{
         'user_create': "studio.serializers.UserCreateSerializer",
         'user': "studio.serializers.UserSerializer",

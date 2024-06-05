@@ -9,6 +9,7 @@ from studio.views.v1.users.jobs import JobsViewSet
 from studio.views.v1.users.appliedjobs import AppliedJobsViewSet
 from studio.views.v1.users.users import UserViewSet
 from rest_framework_nested import routers
+from studio.views.v1.users.userData import UserDataViewSet
 
 router = routers.DefaultRouter()
 router.register('categories',CategoryViewSet)
@@ -21,6 +22,7 @@ router.register('jobs',JobsViewSet,basename='jobs')
 router.register('applyjobs',AppliedJobsViewSet,basename='applyjobs')
 router.register('users',UserViewSet,basename='users')
 router.register('lessons',LessonViewSet,basename='All-lessons')
+router.register('userData',UserDataViewSet,basename='userData')
 
 course_router = routers.NestedDefaultRouter(router,'courses',lookup='course')
 course_router.register('lessons',LessonViewSet,basename='course-lessons')
