@@ -7,8 +7,8 @@ class Constants:
 	NURSE = "nurse"
 	ADMIN = "admin"
 
-	BEGINNER = "beginner"
-	INTERMEDIATE = "intermediate"
-	ADVANCED = "advanced"
-	PROFESSIONAL = "professional"
+	HEALTHCARE = "Heathcare"
+	TECHNOLOGY = "Technology"
+	FINANCE = "Finance & Operations"
+	COMMUNICATION = "Communication & soft skills"
 

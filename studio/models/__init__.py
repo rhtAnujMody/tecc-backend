@@ -8,3 +8,5 @@ from .enrollCourse import EnrollCourse
 from .lessonCompletion import LessonCompletion
 from .jobs import Jobs
 from .appliedjobs import AppliedJobs
+from .video import Video
+from .article import Article

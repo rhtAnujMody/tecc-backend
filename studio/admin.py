@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import User, Profile,Course,Category,Lesson,Quiz,EnrollCourse,LessonCompletion,Jobs,AppliedJobs
+from .models import User, Profile,Course,Category,Lesson,Quiz,EnrollCourse,LessonCompletion,Jobs,AppliedJobs, Video, Article
 
 # Register your models here.
 admin.site.register(User)
@@ -12,6 +12,8 @@ admin.site.register(EnrollCourse)
 admin.site.register(LessonCompletion)
 admin.site.register(Jobs)
 admin.site.register(AppliedJobs)
+admin.site.register(Video)
+admin.site.register(Article)
 
 
 

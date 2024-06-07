@@ -5,13 +5,14 @@ from uuid import uuid4
 
 class Category(models.Model):
     CATEGORY_CHOICES = [
-        (Constants.BEGINNER, Constants.BEGINNER),
-        (Constants.INTERMEDIATE, Constants.INTERMEDIATE),
-        (Constants.ADVANCED, Constants.ADVANCED),
-        (Constants.PROFESSIONAL, Constants.PROFESSIONAL),
+        (Constants.HEALTHCARE, Constants.HEALTHCARE),
+        (Constants.TECHNOLOGY, Constants.TECHNOLOGY),
+        (Constants.FINANCE, Constants.FINANCE),
+        (Constants.COMMUNICATION, Constants.COMMUNICATION),
     ]
     id = models.UUIDField(primary_key=True, default=uuid4,editable=False) 
     name = models.CharField(max_length=255,choices=CATEGORY_CHOICES,unique=True)
+    description = models.CharField(max_length=255)
     
     def __str__(self) -> str:
         return self.name

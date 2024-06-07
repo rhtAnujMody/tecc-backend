@@ -12,6 +12,7 @@ class Course(TimeStampedUUIDModel):
     category_id = models.ForeignKey(Category, on_delete=models.CASCADE,related_name='courses')
     duration = models.CharField(max_length=100,null=True,blank=True)
     profile = models.ManyToManyField(Profile,related_name='courses',null=True,blank=True)
+    is_enrolled = models.BooleanField(default=False,blank=True)
     instructor_name = models.CharField(max_length=255,blank=True)
     instructor_signature = models.FileField(upload_to='images/',default='images/signature.jpg',blank=True)  
     

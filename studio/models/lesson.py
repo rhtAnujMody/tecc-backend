@@ -19,13 +19,8 @@ class Lesson(TimeStampedUUIDModel):
     title = models.CharField(max_length=255)
     content = models.CharField(max_length=255)
     course_id = models.ForeignKey(Course, on_delete=models.CASCADE,related_name='lessons')
-    video_name = models.CharField(max_length=255,blank=True)
-    video_url = models.FileField(upload_to='media/')
-    article_name = models.CharField(max_length=255,null=True)
-    article_url = models.FileField(upload_to='media/',null=True,validators=[validate_pdf_extension])
     sequence = models.CharField(max_length=255)
     duration = models.CharField(max_length=50,null=True)
-    quiz_schema = models.JSONField()
 
     def __str__(self) -> str:
         return self.title
