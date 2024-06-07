@@ -10,11 +10,9 @@ from datetime import datetime
 from studio.serializers import UserSerializer
 
 
-class UserDataViewSet(viewsets.ModelViewSet):
-                    
+class UserDataViewSet(viewsets.ModelViewSet):               
     @action(detail=False,methods=['get'])
     def getUserDetails(self,request):
-        print("testss", request.user.id)
         id = request.user.id
         user_instance = get_object_or_404(User,id=id)
         first_name = user_instance.first_name
