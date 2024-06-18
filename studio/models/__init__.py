@@ -2,9 +2,9 @@ from .profile import Profile
 from .users import User
 from .category import Category
 from .course import Course
-from .lesson import Lesson
 from .quiz import Quiz
 from .enrollCourse import EnrollCourse
-from .lessonCompletion import LessonCompletion
-from .jobs import Jobs
-from .appliedjobs import AppliedJobs
+from .video import Video
+from .article import Article
+from .quiz import Quiz
+from .section import Section

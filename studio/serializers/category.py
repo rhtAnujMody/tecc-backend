@@ -1,12 +1,11 @@
 from rest_framework import serializers
-from  studio.models import Category
-from studio.serializers import CourseSerializer
-
-
+from studio.models import Category
 class CategorySerializer(serializers.ModelSerializer):
-    courses = CourseSerializer(many=True, read_only=True)
+    courses_count = serializers.SerializerMethodField()
+
     class Meta:
         model = Category
-        fields = ['name','courses','id']
+        fields = ['id', 'name', 'description', 'courses_count', 'thumbnail']
 
-
+    def get_courses_count(self, obj):
+        return obj.courses.count()

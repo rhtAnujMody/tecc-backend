@@ -1,132 +1,35 @@
-<html>
-  <head>
-    <title>Reveal Certificate</title>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
     <style>
-      body {
-        background-image: url("background.png");
-        background-size: cover;
-      }
-      .conatiner {
-        border-width: 10%;
-        border-color: black;
-        margin: 50px;
-        display: flex;
-        flex: 1;
-        flex-direction: column;
-        align-items: center;
-        margin-top: 0px;
-      }
-      .tecc{
-        font-family: "Copperplate Gothic Bold";
-        font-size: 30;
-        word-spacing: 10px;
-        letter-spacing: 3px;
-        font-weight: 600;
-      }
-      .certificate-title {
-        font-family: "Cinzel Decorative";
-        font-size: 55;
-        margin-bottom: 0%;
-      }
-      .certificate-title-bottom {
-        font-family: "Cinzel Decorative";
-        font-size: 50;
-        margin-top: 0%;
-        margin-bottom: 5;
-      }
-      .certify-that {
-        font-family: "Cinzel Decorative";
-        font-size: 20;
-        margin-top: 0%;
-      }
-​
-      .border-bottom{
-        display: flex;
-        flex:1;
-        align-items: center;
-        justify-content: center;
-        margin: 0px 150px; 
-        border-bottom: 2px solid white;
-      }
-      .signature{
-        height:100px;
-        width: 100px;
-      }
-      .certifiate-signature-conatiner{
-        display: flex;
-        flex:1;
-        margin-top: 40;
-        position: relative;
-        align-items: center;
-        justify-content: center;
-        flex-direction: row;
-        width: 70%;
-        border-bottom:  1px solid #B43052;
-        padding-bottom: 20;
-      }
-      .signature-inner{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;  
-      }
-      .reveal_logo {
-        height: 100px;
-        width:200px;
-        position: absolute;
-        right: 0;
-      }
-      .successful-completion-text{
-        font-family: 'Playfair Display';
-        font-size: 20px;
-        margin-top: 15px;
-        margin-bottom: 3px;
-      }
-      .student-name{
-        font-family: "Cinzel Decorative";
-        font-size: 55;
-        font-weight: 500;
-        margin-bottom: 10px;
-      }
-      .line {
-        width: 200px;
-        height: 0;
-        border: 0.5px solid #B43052;
-        display:inline-block;
-      }
-      .line2 {
-        width: 50%;
-        height: 0;
-        border: 0.5px solid #B43052;
-        display:inline-block;
-      }
-      .instructor-name{
-        font-size: 18px;
-      }
+        .certificate {
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            padding: 50px;
+            border: 10px solid #000;
+            background-image: url("https://d1gt2w0mc3uw79.cloudfront.net/images/download.jpg");
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+        .certificate .name {
+            font-size: 40px;
+            font-weight: bold;
+        }
+        .certificate .date {
+            font-size: 20px;
+        }
+        .border-bottom {
+            display: block;
+            border-bottom: 2px solid #000;
+        }
     </style>
-    </head>
-    <body>
-      <div class="border-bottom">
-        <p class="tecc">TECH-ENABLED CARE COORDINATOR PROGRAM (TECC)</p>
-      </div>
-      <div class="conatiner">
-        <p class="certificate-title">CERTIFICATE</p>
-        <p class="certificate-title-bottom">OF COMPLETION</p>
-        <p class="certify-that">THIS IS TO CERTIFY THAT</h3>
-        <h3 class="student-name">{{username}}</h3>
-        <div class="line2"></div>
-        <p class="successful-completion-text">
-          {{course_title}}
-        </p>
-        <p class="successful-completion-text">{{completion_date}}</p>
-        <div class="certifiate-signature-conatiner">
-          <div class="signature-inner">
-            <img src="signature.png" class="signature"/>
-            <div class="line"></div>
-            <p class="instructor-name">John Doe (Instructor)</p>
-          </div>
-          <img src="reveal_logo.png" class="reveal_logo" />
-        </div>
-      </div>
-    </body>
+</head>
+<body>
+    <div class="certificate">
+        <p class="name">{{ name }}</p>
+        <p class="date">{{ date }}</p>
+    </div>
+</body>
 </html>
