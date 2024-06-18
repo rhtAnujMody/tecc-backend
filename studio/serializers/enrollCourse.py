@@ -1,12 +1,11 @@
 from rest_framework import serializers
-from studio.models import EnrollCourse,Course
-
+from studio.models import EnrollCourse
 
 class EnrollCourseSerializer(serializers.ModelSerializer):
     title = serializers.SerializerMethodField()
     class Meta:
         model=EnrollCourse
-        fields = ['id','title','profile','course_id','course_progress','is_enrolled','is_CourseCompleted','enrollment_date','course_completion_date','total_chapter','completed_chapter']
+        fields = ['id','title','course_id','is_enrolled','is_CourseCompleted','enrollment_date','course_completion_date', 'course_progress']
         
         
     def get_title(self, obj):

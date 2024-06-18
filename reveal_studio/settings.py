@@ -80,7 +80,9 @@ CORS_ALLOWED_ORIGINS = [
 "https://api.domain.com",
 "http://localhost:3000",
 "http://127.0.0.1:9000",
-"http://rlms-learning-platform.s3-website.ap-south-1.amazonaws.com"
+"http://rlms-learning-platform.s3-website.ap-south-1.amazonaws.com",
+"https://31b1-2401-4900-883b-f7af-95dc-3033-54b0-e1e0.ngrok-free.app",
+ "https://aa08-125-21-77-42.ngrok-free.app"
 ]
 
 CORS_ALLOW_METHODS = [
@@ -140,7 +142,7 @@ CORS_ORIGIN_WHITELIST = (
 )
 
 CSRF_TRUSTED_ORIGINS = [
-    os.environ.get('CSRF_TRUSTED_ORIGIN', "http://localhost:8000"),
+    os.environ.get('CSRF_TRUSTED_ORIGIN', "https://aa08-125-21-77-42.ngrok-free.app"),
 ]
 
 
@@ -240,6 +242,7 @@ AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
 AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_STORAGE_BUCKET_NAME')
 AWS_QUERYSTRING_AUTH = False
 AWS_S3_REGION_NAME = os.environ.get('AWS_S3_REGION_NAME')
+AWS_S3_SIGNATURE_VERSION = 's3v4'
 #check for expiry 
 
 AWS_S3_CUSTOM_DOMAIN = os.environ.get('AWS_S3_CUSTOM_DOMAIN')

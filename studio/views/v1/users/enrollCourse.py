@@ -18,9 +18,7 @@ class EnrollCourseViewSet(viewsets.ModelViewSet):
         course_id = request.data.get("course_id")
         course = get_object_or_404(Course, id=course_id)
         profile = request.user.profile
-        print("test", profile, course, course.id)
         enrollment = EnrollCourse.objects.filter(profile=profile, course_id=course.id)
-        print("test2", enrollment)
         if enrollment.exists():
             return Response({'detail': 'User is already enrolled in the course'}, status=status.HTTP_400_BAD_REQUEST)
 
@@ -28,22 +26,40 @@ class EnrollCourseViewSet(viewsets.ModelViewSet):
             profile=profile,
             course_id=course,
             is_enrolled=True,
-            is_CourseStarted=False,
             is_CourseCompleted=False
         )
 
         # Update the is_enrolled field in the Course model
         course.is_enrolled = True
+        course.is_CourseCompleted = False
         course.save()
         serializer = EnrollCourseSerializer(enroll_course)
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response("Course Enrolled Successfully!", status=status.HTTP_201_CREATED)
 
     @action(detail=False, methods=['get'])
     def getEnrolledCourse(self, request):
         profile = request.user.profile
         EnrolledCourse = EnrollCourse.objects.filter(profile=profile)
-        serializer = EnrollCourseSerializer(EnrolledCourse, many=True)
+        courses = [enrollment.course_id for enrollment in EnrolledCourse]
+        serializer = CourseSerializer(courses, many=True, context={'request': request})
         return Response(serializer.data, status=status.HTTP_200_OK)
+    
+    @action(detail=False, methods=['get'])
+    def getPendingCourse(self, request):
+        profile = request.user.profile
+        EnrolledCourse = EnrollCourse.objects.filter(profile=profile, is_CourseCompleted=False)
+        courses = [enrollment.course_id for enrollment in EnrolledCourse]
+        serializer = CourseSerializer(courses, many=True, context={'request': request})
+        return Response(serializer.data, status=status.HTTP_200_OK)
+    
+    @action(detail=False, methods=['get'])
+    def getCompletedCourse(self, request):
+        profile = request.user.profile
+        EnrolledCourse = EnrollCourse.objects.filter(profile=profile, is_CourseCompleted=True)
+        courses = [enrollment.course_id for enrollment in EnrolledCourse]
+        serializer = CourseSerializer(courses, many=True, context={'request': request})
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
 
     @action(detail=False, methods=['get'])
     def getCourseProgress(self, request):
@@ -71,14 +87,19 @@ class EnrollCourseViewSet(viewsets.ModelViewSet):
         serializer = EnrollCourseSerializer(courses, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
-    @action(detail=False, methods=['put'])
-    def updateIsCourseCompleted(self, request, pk=None):
+    @action(detail=False, methods=['post'])
+    def markCourseCompleted(self, request, pk=None):
+        user = request.user
         profile = request.user.profile
         course_id = request.data.get("course_id")
+        course = get_object_or_404(Course, id=course_id)
         CourseInstance = get_object_or_404(EnrollCourse, profile=profile, course_id=course_id)
         CourseInstance.is_CourseCompleted = True
         if not CourseInstance.course_completion_date:
             CourseInstance.course_completion_date = datetime.now()
+            CourseInstance.save()
+            user.credits_earned += course.credit
+            user.save()
         CourseInstance.save()
         serializer = EnrollCourseSerializer(CourseInstance)
         return Response(serializer.data, status=status.HTTP_200_OK)

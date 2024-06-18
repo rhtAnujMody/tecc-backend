@@ -2,7 +2,6 @@ from .common import TimeStampedUUIDModel
 from django.db import models
 from .users import User
 from django.core.exceptions import ValidationError
-from auditlog.registry import auditlog
 from studio.configs import Constants
 
 

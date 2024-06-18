@@ -12,8 +12,8 @@ class QuizViewSet(viewsets.ModelViewSet):
     
     @action(detail=False,methods=['get'])
     def getQuiz(self,request):
-        lesson_id = request.query_params.get("lesson")
-        quiz = Quiz.objects.filter(lesson=lesson_id)
+        lesson = request.query_params.get("lesson")
+        quiz = Quiz.objects.filter(lesson=lesson)
         serializer = QuizSerializer(quiz,many=True)
         return Response(serializer.data,status=status.HTTP_200_OK)
         

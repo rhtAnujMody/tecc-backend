@@ -4,13 +4,11 @@ from studio.configs import Constants
 from djoser.serializers import UserCreateSerializer as BaseUserCreateSerializer
 from django.core.validators import EmailValidator, RegexValidator
 
-
 class UserSerializer(serializers.ModelSerializer):
     first_name = serializers.SerializerMethodField()
     last_name = serializers.SerializerMethodField()
     full_name = serializers.SerializerMethodField()
     
-
     class Meta:
         model = User
         fields = ['id', 'username', 'email', 'first_name', 'last_name', 'full_name', 'gender', 'phone_number', 'profile_photo', 'country', 'city', 'top_seller']

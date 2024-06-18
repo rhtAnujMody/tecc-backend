@@ -6,15 +6,13 @@ from uuid import uuid4
 
 class Course(TimeStampedUUIDModel):
     id = models.UUIDField(primary_key=True, default=uuid4,editable=False)  
-    title = models.CharField(max_length=255)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE,related_name='courses')
+    title = models.CharField(max_length=255, unique=True)
     description = models.CharField(max_length=255)
     thumbnail = models.FileField(upload_to='images/',default='images/course_thumbnail.jpg')
-    category_id = models.ForeignKey(Category, on_delete=models.CASCADE,related_name='courses')
-    duration = models.CharField(max_length=100,null=True,blank=True)
-    profile = models.ManyToManyField(Profile,related_name='courses',null=True,blank=True)
-    is_enrolled = models.BooleanField(default=False,blank=True)
-    instructor_name = models.CharField(max_length=255,blank=True)
-    instructor_signature = models.FileField(upload_to='images/',default='images/signature.jpg',blank=True)  
+    profile = models.ManyToManyField(Profile,related_name='courses',null=True,blank=True) 
+    credit = models.IntegerField(default=0, unique=False)
+    is_mandatory = models.BooleanField(default=False,blank=False)
     
     def __str__(self) -> str:
         return self.title

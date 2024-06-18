@@ -1,7 +1,13 @@
 from rest_framework import serializers
 from studio.models import Video
+from studio.models import Video
 
 class VideoSerializer(serializers.ModelSerializer):
+    type = serializers.SerializerMethodField()
     class Meta:
         model = Video
-        fields = ['id', 'video_name', 'video_url', 'lesson_id']
+        fields = ['id', 'section', 'video_name', 'video_url', 'order', 'duration', 'type']
+
+    
+    def get_type(self, obj):
+        return 'video'

@@ -1,11 +1,11 @@
 from rest_framework import serializers
 from  studio.models import Quiz
-
-
 class QuizSerializer(serializers.ModelSerializer):
+    type = serializers.SerializerMethodField()
     class Meta:
         model = Quiz
-        fields = ['id','lesson','question','quiz_type','option','answer','marks']
+        fields = ['id','section', 'quiz_name', 'quiz_schema', 'is_mandatory', 'order', 'type']
         
-        
+    def get_type(self, obj):
+        return 'quiz'   
 

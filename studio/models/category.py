@@ -11,8 +11,14 @@ class Category(models.Model):
         (Constants.COMMUNICATION, Constants.COMMUNICATION),
     ]
     id = models.UUIDField(primary_key=True, default=uuid4,editable=False) 
-    name = models.CharField(max_length=255,choices=CATEGORY_CHOICES,unique=True)
+    name = models.CharField(max_length=255,unique=True)
     description = models.CharField(max_length=255)
+    thumbnail = models.FileField(upload_to='images/',default='images/category_thumbnail.jpg')
+
+    USERNAME_FIELD = "name"
     
     def __str__(self) -> str:
         return self.name
+    
+    class Meta:
+        verbose_name_plural = "Categories"
